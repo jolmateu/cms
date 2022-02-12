@@ -3,13 +3,12 @@
         <div class="panel panel-default">
             <div class="panel-heading clearfix">
                 <h1 class="pull-left">Contacts</h1>
-                <span class="pull-right"><button class="btn btn-success">New Contact</button></span>
+                <a [routerLink]="['new']" class="pull-right btn btn-success">New Contact</a>
             </div>
             <div class="panel-body">
                 <app-contact-item
                 *ngFor="let contact of contacts"
-                [contact]="contact"
-                (click)="onSelected(contact)"></app-contact-item>
+                [contact]="contact"></app-contact-item>
             </div>
           </div>
     </div>

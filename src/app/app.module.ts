@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { ContactsComponent } from './contacts/contacts.component';
@@ -18,14 +17,17 @@ import { MessageItemComponent } from './messages/message-item/message-item.compo
 import { MessageEditComponent } from './messages/message-edit/message-edit.component';
 import { MessageListComponent } from './messages/message-list/message-list.component';
 import { DropdownDirective } from './shared/dropdown.directive';
+import { AppRoutingModule } from './app-routing.module';
+import { DocumentEditComponent } from './documents/document-edit/document-edit.component';
+import { ContactEditComponent } from './contacts/contact-edit/contact-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
     ContactsComponent,
     ContactDetailComponent,
     ContactListComponent,
-    HeaderComponent,
     ContactItemComponent,
     DocumentsComponent,
     DocumentListComponent,
@@ -35,12 +37,14 @@ import { DropdownDirective } from './shared/dropdown.directive';
     MessageItemComponent,
     MessageEditComponent,
     MessageListComponent,
-    DropdownDirective
+    DropdownDirective,
+    DocumentEditComponent,
+    ContactEditComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    CommonModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
