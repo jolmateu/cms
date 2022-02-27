@@ -49,7 +49,7 @@ export class DocumentService {
   getMaxId(): number {
     let maxId = 0;
     for (let document of this.documents){
-      let currentId = parseInt("document.id");
+      let currentId = +document.id;
       if (currentId > maxId){
         maxId = currentId;
       }
