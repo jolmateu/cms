@@ -56,7 +56,7 @@ export class ContactEditComponent implements OnInit {
   }
 
   onCancel() {
-    this.router.navigate(['/contacta']);
+    this.router.navigate(['/contacts']);
   }
 
   onRemoveItem(i){
