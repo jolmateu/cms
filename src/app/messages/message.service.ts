@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Message } from './message.model';
-import { MOCKMESSAGES } from './MOCKMESSAGES';
+//import { MOCKMESSAGES } from './MOCKMESSAGES';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class MessageService {
   }
 
   getMessages(): Message[] {
-    this.http.get<Message[]>('https://cmsproject-6c76a-default-rtdb.firebaseio.com/messages.json')
+    this.http.get<Message[]>('http://127.0.0.1:3000/messages')
       .subscribe(
         // success method
         (messages: Message[]) => {
@@ -54,9 +54,29 @@ export class MessageService {
     return maxId;
   }
 
+  
   addMessage(message: Message) {
-    this.messages.push(message);
-    this.storeMessages();
+    if (!message) {
+      return;
+    }
+  
+    // make sure id of the new Document is empty
+    message.id = '';
+  
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+  
+    // add to database
+    this.http.post<{ message: string, oMessage: Message }>('http://127.0.0.1:3000/messages',
+      message,
+      { headers: headers })
+      .subscribe(
+        (responseData) => {
+          // add new document to documents
+          this.messages.push(responseData.oMessage);
+          this.messages.sort();
+          this.messageChangedEvent.next(this.messages.slice())
+        }
+      );
   }
 
   storeMessages() {
